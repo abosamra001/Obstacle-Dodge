@@ -1,27 +1,15 @@
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    public const float speed = 0.3f,maximumSteps=80;
 
-    int steps = 0,pointer=0;
-    List<Tuple<float, float>> coordinates = new List<Tuple<float, float>>
-    {
-        (new Tuple<float, float>(speed, 0)),
-        (new Tuple<float, float>(0, speed)),
-        (new Tuple<float, float>(-speed, 0)),
-        (new Tuple<float, float>(0, -speed)),
-    };
-    
+    [SerializeField]float moveSpeed = 20.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //print("the start method has been called");// called once
         
-
 
     }
 
@@ -29,18 +17,19 @@ public class Mover : MonoBehaviour
     void Update()
     {
         //print("the update method has been called");// called over and over
-        steps++;
-        if (steps >= maximumSteps)
-        {
-            steps = 0;
-            pointer++;
-            if(pointer > 3)
-            {
-                pointer = 0;
-            }
+        // getAxis returns (-1,1) left and right
+        // the Input class is old noadays there is a newer one Input system package
+        // for now we are using the legacy one but in the future we will learn the newer one keep moving for now;
 
-        }
-        transform.Translate(coordinates[pointer].Item1, 0, coordinates[pointer].Item2);
+        
+        float xValue = Input.GetAxis("Vertical")* Time.deltaTime * moveSpeed;// up and down
+        float yValue = 0;
+        float zValue = Input.GetAxis("Horizontal")*Time.deltaTime * moveSpeed;// left and right
+
+        //public property refers to this game object
+        transform.Translate(xValue, yValue, -zValue);
+        //transform.Rotate(0, yValue, 00);
+        
     }
     
 }
