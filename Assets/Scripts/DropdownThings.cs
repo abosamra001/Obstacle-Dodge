@@ -3,25 +3,31 @@ using UnityEngine;
 public class DropdownThings : MonoBehaviour
 {
     [SerializeField] float dropAfter = 3;
+    MeshRenderer myMesh;
+    Rigidbody myRigid;
 
+    private void Start()
+    {
+        myMesh=GetComponent<MeshRenderer>();
+        myRigid=GetComponent<Rigidbody>();
+
+        myMesh.enabled=false;
+        myRigid.useGravity=false;
+    }
     private void Update()
     {
-
-        //Debug.Log("the game was started since "+Time.time);
-        if (Time.time > dropAfter)
+        if(Time.time> dropAfter)
         {
-            GetComponent<Rigidbody>().useGravity = true;
+            myMesh.enabled = true;
+            myRigid.useGravity = true;
         }
-        
 
-            
-        
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Destroy(gameObject);
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    GetComponent<MeshRenderer>().enabled = false;
+    //    GameObject.Destroy(gameObject);
+    //}
 
 
 }

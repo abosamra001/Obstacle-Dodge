@@ -5,7 +5,7 @@ public class Scorer : MonoBehaviour
     int score = 0;
     private void OnCollisionEnter(Collision collision)
     {
-        score++;
+        if(!collision.gameObject.CompareTag("Hit"))score++;
         Debug.Log($"You have hitten : {score} times");
     }
 }

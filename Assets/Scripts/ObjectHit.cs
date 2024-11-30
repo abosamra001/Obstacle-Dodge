@@ -4,12 +4,18 @@ public class ObjectHit : MonoBehaviour
 {
     Color initColor;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if (collision == null) return;
-        initColor= GetComponent<MeshRenderer>().material.color;
+        if (other == null) return;
+        if (other.gameObject.CompareTag("Player"))
+        {
 
-        GetComponent<MeshRenderer>().material.color = Color.red;
+            initColor = GetComponent<MeshRenderer>().material.color;
+
+            GetComponent<MeshRenderer>().material.color = Color.red;
+            gameObject.tag = "Hit";
+
+        }
 
         //Debug.Log("something hit me ");
 
@@ -17,6 +23,7 @@ public class ObjectHit : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         if (collision == null) return;
-        GetComponent<MeshRenderer>().material.color = initColor;
+        if(collision.gameObject.CompareTag("Player"))
+            GetComponent<MeshRenderer>().material.color = initColor;
     }
 }
