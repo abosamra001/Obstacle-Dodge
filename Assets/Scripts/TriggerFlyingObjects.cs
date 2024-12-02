@@ -4,7 +4,7 @@ public class TriggerFlyingObjects : MonoBehaviour
 {
 
     [SerializeField] GameObject flyingObject;
-    private void Start()
+    private void Awake()
     {
         flyingObject.SetActive(false);
     }

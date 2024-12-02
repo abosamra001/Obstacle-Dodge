@@ -7,12 +7,13 @@ public class FlyToPlayer : MonoBehaviour
     Vector3 myPosition;
     void Start()
     {
-        myPosition=player.transform.position;
+        
+        myPosition =player.transform.position;
     }
 
     void Update()
     {
-        transform.position= Vector3.MoveTowards(transform.position,myPosition,Time.deltaTime* flySpeed*2);
+        transform.position= Vector3.MoveTowards(transform.position,myPosition, Time.deltaTime * flySpeed * 8);
         if(transform.position == myPosition)
         {
             Destroy(gameObject);

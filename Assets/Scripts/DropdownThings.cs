@@ -23,11 +23,7 @@ public class DropdownThings : MonoBehaviour
         }
 
     }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    GetComponent<MeshRenderer>().enabled = false;
-    //    GameObject.Destroy(gameObject);
-    //}
+    
 
 
 }
